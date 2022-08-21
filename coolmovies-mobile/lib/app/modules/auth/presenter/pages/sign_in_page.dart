@@ -14,14 +14,33 @@ class SignInPage extends GetView<SignInController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InputSelectUser(
-                onSelectUser: (user) => controller.store.currentUser = user,
-                users: controller.store.users.toList(),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    'Welcome to Coolmovies APP',
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ),
               ),
-              ElevatedButton(
-                onPressed: controller.store.currentUser != null ? controller.signIn : null,
-                child: const Text('Sign in'),
-              )
+              Expanded(
+                child: Column(
+                  children: [
+                    InputSelectUser(
+                      onSelectUser: (user) => controller.store.currentUser = user,
+                      users: controller.store.users.toList(),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    ElevatedButton(
+                      onPressed: controller.store.currentUser != null ? controller.signIn : null,
+                      child: const Text(
+                        'Sign in',
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),

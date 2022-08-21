@@ -24,12 +24,6 @@ class _InputSelectUserState extends State<InputSelectUser> {
           label: Text(
             selectedUser == null ? 'Select an User' : 'Selected User',
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.background,
-            ),
-          ),
         ),
         isExpanded: true,
         value: selectedUser,

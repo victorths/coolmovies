@@ -1,7 +1,7 @@
 import 'package:coolmovies/app/app_binding.dart';
-import 'package:coolmovies/app/commons/presenter/navigation/app_pages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'app/commons/presenter/theme.dart';
 import 'app/commons/utils/exports.dart';
 
 void main() async {
@@ -17,7 +17,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -25,9 +24,7 @@ class MyApp extends StatelessWidget {
       initialBinding: AppBinding(),
       getPages: AppPages.routes,
       title: 'Cool Movies',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: CustomTheme.build(),
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,26 +1,10 @@
 # Coolmovies mobile challenge
+The project was built using Flutter version 3.0.5.
+To run the project run the following commands using Flutter 3.0.5:
 
-You have to add the cool movies review feature to the existing `coolmovies-mobile`.
+        flutter pub get
+        flutter run
 
-This folder contains a basic Flutter application with some example callbacks.
-
-We've setup GraphQL for you. We recommend that you work on an emulator only, there's no need to test your application in a real device.
-
-## Acceptance Criteria
-
-**You will be evaluated on your UI/UX as we believe this is an important skill to have. Please put time and effort into this.**
-
-**DO NOT USE EXISTING TEMPLATES. You can copy the design but not the code, we have to evaluate you by your coding skills.**
-
-For your solution to be accepted it is required that your application is able to:
-
-1. List all the available movies, showing at least the title
-2. Tapping on a movie must open a view page presenting all the available information to the user
-3. Each movie page must display all its reviews
-4. Each review should consist of (at least): title, body and stars (1-5)
-5. The user should be able to create new reviews
-6. The user should be able to edit their own reviews
-
-Anything else is up to you (animations, assets, 3rd party dependencies, etc). We will consider all your additions so don't stick to the minimum!
-
-Good luck!
+As the test did not specify any architecture to use I used a self made architecture based on Clean Arch and following the SOLID concepts (excluding the dependency inversion part, to save time) with some concepts from MVVM.
+To manage page state and dependency injection I used the Get package.
+I had a problem when I was creating a new Review because this data didn't come when I fetch the Review, I managed to solve it by applying a resetStore in the GraphQl client whenever I went to get the Reviews.

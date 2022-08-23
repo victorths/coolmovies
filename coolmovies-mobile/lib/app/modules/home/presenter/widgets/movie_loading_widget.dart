@@ -8,9 +8,9 @@ class MovieLoadingWidget extends StatelessWidget {
     return CarouselWidget(
       items: [
         for (int i = 0; i <= 1 + Random().nextInt(4); i++)
-          const CarouselCard(
-            topLeftChild: SkeletonContainer(),
-            child: SkeletonContainer(),
+          CarouselCard(
+            key: Key(i.toString()),
+            child: const SkeletonContainer(),
           )
       ],
     );

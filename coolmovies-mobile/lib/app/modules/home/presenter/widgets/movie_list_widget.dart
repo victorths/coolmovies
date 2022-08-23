@@ -16,15 +16,16 @@ class MovieListWidget extends StatelessWidget {
       items: movies
           .map(
             (movie) => CarouselCard(
+              key: Key(movie.id),
               onTap: () => onTap(movie),
-              topLeftChild: Padding(
+              title: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: Text(
                   movie.title,
                   style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white),
                 ),
               ),
-              bottomRightChild: StarRateWidget(
+              rate: StarRateWidget(
                 rate: movie.rate,
               ),
               child: Container(

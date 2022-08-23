@@ -10,20 +10,20 @@ class StarRateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [for (int i = 1; i <= 5; i++) _buildIcon(i, rate)],
-    );
-  }
-
-  Widget _buildIcon(int i, double rate) {
-    return Icon(
-      rate >= i
-          ? Icons.star
-          : rate > i - 1
-              ? Icons.star_half
-              : Icons.star_border,
-      color: Colors.yellow,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            rate.toString(),
+            style: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.white),
+          ),
+          const Icon(
+            Icons.star,
+            color: Colors.yellow,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -4,9 +4,11 @@ class MovieDetailsWidget extends StatelessWidget {
   const MovieDetailsWidget({
     Key? key,
     required this.movie,
+    required this.rate,
   }) : super(key: key);
 
   final MovieEntity movie;
+  final double rate;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class MovieDetailsWidget extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  movie.rate.toString(),
+                  rate.toStringAsFixed(1),
                   style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).colorScheme.secondary),
                 ),
                 const Text('Score'),

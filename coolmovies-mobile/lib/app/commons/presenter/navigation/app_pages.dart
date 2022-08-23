@@ -40,5 +40,17 @@ class AppPages {
         ),
       ),
     ),
+    GetPage(
+      name: _Paths.reviewForm,
+      page: () => const ReviewFormPage(),
+      binding: BindingsBuilder.put(
+        () => ReviewFormController(
+          store: ReviewFormStore(),
+          repository: MovieRepository(
+            client: Get.find(),
+          ),
+        ),
+      ),
+    ),
   ];
 }

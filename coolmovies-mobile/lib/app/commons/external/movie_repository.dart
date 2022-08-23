@@ -9,7 +9,7 @@ class MovieRepository {
     try {
       final result = await client.query(
         QueryOptions(
-          document: gql(r"""
+          document: gql("""
           query Query {
             allMovies {
               nodes {
@@ -20,11 +20,6 @@ class MovieRepository {
                 title
                 releaseDate
                 nodeId
-                movieReviewsByMovieId{
-                  nodes {
-                    rating
-                  }
-                }
               }
             }
           }
@@ -47,18 +42,22 @@ class MovieRepository {
 
   Future<List<ReviewEntity>> fetchReviewsByMovieId(String movieId) async {
     try {
+      client.resetStore();
       final result = await client.query(
         QueryOptions(
-          document: gql(r"""
+          document: gql(
+            """
             {
               allMovieReviews(
-                filter: {movieId: {equalTo: "MOVIE_ID"}}
+                filter: {movieId: {equalTo: "$movieId"}}
               ) {
                 nodes {
                   id
                   title
                   body
                   rating
+                  movieId
+                  nodeId
                   userByUserReviewerId {
                     name
                     id
@@ -66,8 +65,8 @@ class MovieRepository {
                 }
               }
             }
-        """
-              .replaceFirst('MOVIE_ID', movieId)),
+        """,
+          ),
         ),
       );
       final data = result.data?['allMovieReviews'];
@@ -82,5 +81,46 @@ class MovieRepository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<bool> submitForm(dynamic data, String? nodeId) async {
+    try {
+      final result = await client.mutate(
+        MutationOptions(
+          document: gql("""
+            mutation {
+              ${nodeId == null ? 'createMovieReview' : 'updateMovieReview'} (
+                input: {
+                  ${nodeId == null ? '' : 'nodeId: "$nodeId"'}
+                  ${nodeId == null ? 'movieReview' : 'movieReviewPatch'}: $data   
+                }             
+              )
+              {
+                movieReview {
+                  id
+                  title
+                  body
+                  rating
+                  movieByMovieId {
+                    title
+                  }
+                  userByUserReviewerId {
+                    name
+                  }
+                }
+              }
+            }
+          """),
+        ),
+      );
+      if (result.data != null && result.data?[nodeId == null ? 'createMovieReview' : 'updateMovieReview'] != null) {
+        return true;
+      } else {
+        false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+    return false;
   }
 }

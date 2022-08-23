@@ -9,7 +9,7 @@ class MovieLoadingWidget extends StatelessWidget {
       items: [
         for (int i = 0; i <= 1 + Random().nextInt(4); i++)
           CarouselCard(
-            key: Key(i.toString()),
+            movieId: i.toString(),
             child: const SkeletonContainer(),
           )
       ],

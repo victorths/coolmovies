@@ -11,7 +11,7 @@ class MovieImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: Key(movie.id),
+      tag: movie.id,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(

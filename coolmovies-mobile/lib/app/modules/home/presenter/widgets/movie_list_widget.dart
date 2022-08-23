@@ -16,7 +16,7 @@ class MovieListWidget extends StatelessWidget {
       items: movies
           .map(
             (movie) => CarouselCard(
-              key: Key(movie.id),
+              movieId: movie.id,
               onTap: () => onTap(movie),
               title: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -24,9 +24,6 @@ class MovieListWidget extends StatelessWidget {
                   movie.title,
                   style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white),
                 ),
-              ),
-              rate: StarRateWidget(
-                rate: movie.rate,
               ),
               child: Container(
                 color: Theme.of(context).colorScheme.tertiary,

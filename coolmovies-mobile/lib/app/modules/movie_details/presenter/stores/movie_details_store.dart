@@ -17,6 +17,15 @@ class MovieDetailsStore {
 
   void load() => loading = true;
 
+  double movieRate(MovieEntity movie) {
+    if (reviews.isNotEmpty) {
+      final total = reviews.fold(0.0, (double previousValue, review) => previousValue + review.rating);
+      return total / reviews.length;
+    } else {
+      return 0;
+    }
+  }
+
   void completeWithData(List<ReviewEntity> data) {
     reviews.assignAll(data);
     error = '';

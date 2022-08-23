@@ -6,4 +6,3 @@ export 'package:coolmovies/app/modules/home/presenter/widgets/movie_error_widget
 export 'package:coolmovies/app/modules/home/presenter/widgets/movie_list_widget.dart';
 export 'package:coolmovies/app/modules/home/presenter/widgets/movie_loading_widget.dart';
 export 'package:coolmovies/app/modules/home/presenter/widgets/movie_not_found_widget.dart';
-export 'package:coolmovies/app/modules/home/presenter/widgets/star_rate_widget.dart';

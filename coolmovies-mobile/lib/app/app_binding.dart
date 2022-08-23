@@ -4,20 +4,15 @@ class AppBinding implements Bindings {
   @override
   void dependencies() {
     final HttpLink httpLink = HttpLink(
-      Platform.isAndroid ? 'http://10.0.2.2:5001/graphql' : 'http://localhost:5001/graphql',
+      Platform.isAndroid ? 'http://192.168.0.102:5001/graphql' : 'http://localhost:5001/graphql',
     );
-
-    final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
-    );
-
-    final Link link = authLink.concat(httpLink);
-
     // These dependencies must be accessible to everyone in the app.
     Get.put<GraphQLClient>(
       GraphQLClient(
-        link: link,
-        cache: GraphQLCache(store: HiveStore()),
+        link: httpLink,
+        cache: GraphQLCache(
+          store: HiveStore(),
+        ),
       ),
       permanent: true,
     );

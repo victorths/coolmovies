@@ -2,16 +2,16 @@ import 'package:coolmovies/app/commons/utils/exports.dart';
 
 class CarouselCard extends StatelessWidget {
   const CarouselCard({
-    required Key key,
+    Key? key,
     required this.child,
+    required this.movieId,
     this.title,
     this.onTap,
-    this.rate,
   }) : super(key: key);
 
   final Widget child;
+  final String movieId;
   final Widget? title;
-  final Widget? rate;
   final VoidCallback? onTap;
 
   @override
@@ -22,7 +22,7 @@ class CarouselCard extends StatelessWidget {
         children: [
           Center(
             child: Hero(
-              tag: key!,
+              tag: movieId,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.64,
                 margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -65,19 +65,6 @@ class CarouselCard extends StatelessWidget {
                 ),
                 alignment: const Alignment(0, 0.95),
                 child: title,
-              ),
-            ),
-          if (rate != null)
-            Align(
-              alignment: const Alignment(-1, -1),
-              child: Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: rate,
               ),
             ),
         ],

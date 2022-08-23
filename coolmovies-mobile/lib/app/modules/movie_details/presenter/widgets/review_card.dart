@@ -58,9 +58,17 @@ class _ReviewCardWidgetState extends State<ReviewCardWidget> {
                 height: 8,
               ),
               Text(
+                widget.review.title,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
                 widget.review.body,
                 textAlign: TextAlign.justify,
-                maxLines: expanded ? null : 3,
+                maxLines: expanded ? null : 2,
                 overflow: expanded ? null : TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyText1,
               ),

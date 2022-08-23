@@ -9,6 +9,7 @@ class MovieDetailsPage extends GetView<MovieDetailsController> {
     final movie = controller.store.movie!;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        heroTag: 'addButton',
         onPressed: () => controller.toReviewForm(),
         child: const Icon(Icons.add),
       ),
@@ -22,7 +23,12 @@ class MovieDetailsPage extends GetView<MovieDetailsController> {
               const SizedBox(
                 height: 36,
               ),
-              MovieDetailsWidget(movie: movie),
+              Obx(
+                () => MovieDetailsWidget(
+                  movie: movie,
+                  rate: controller.store.movieRate(movie),
+                ),
+              ),
               const SizedBox(
                 height: 16,
               ),
@@ -33,6 +39,7 @@ class MovieDetailsPage extends GetView<MovieDetailsController> {
                 height: 16,
               ),
               FloatingActionButton(
+                heroTag: 'backButton',
                 elevation: 0,
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 child: const Icon(

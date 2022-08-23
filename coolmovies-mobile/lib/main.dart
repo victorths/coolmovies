@@ -5,8 +5,6 @@ import 'app/commons/presenter/theme.dart';
 import 'app/commons/utils/exports.dart';
 
 void main() async {
-  // We're using HiveStore for persistence,
-  // so we need to initialize Hive.
   await initHiveForFlutter();
 
   runApp(

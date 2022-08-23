@@ -16,5 +16,17 @@ class AppPages {
         ),
       ),
     ),
+    GetPage(
+      name: _Paths.home,
+      page: () => const HomePage(),
+      binding: BindingsBuilder.put(
+        () => HomeController(
+          store: HomeStore(),
+          repository: MovieRepository(
+            client: Get.find(),
+          ),
+        ),
+      ),
+    ),
   ];
 }

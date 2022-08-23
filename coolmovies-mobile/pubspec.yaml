@@ -6,12 +6,14 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.17.6 <3.0.0"
 dependencies:
+  skeleton_text:
+  carousel_slider:
+  get:
   flutter_localizations:
     sdk: flutter
   flutter:
     sdk: flutter
   graphql_flutter:
-  get:
   cupertino_icons: 
 
 dev_dependencies:

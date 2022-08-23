@@ -18,7 +18,7 @@ class SignInPage extends GetView<SignInController> {
                 child: Center(
                   child: Text(
                     'Welcome to Coolmovies APP',
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
               ),

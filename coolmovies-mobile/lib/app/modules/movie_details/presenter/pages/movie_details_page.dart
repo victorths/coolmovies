@@ -18,92 +18,11 @@ class MovieDetailsPage extends GetView<MovieDetailsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Hero(
-                tag: Key(movie.id),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).colorScheme.tertiary.withOpacity(0.30),
-                        blurRadius: 20,
-                        spreadRadius: 2,
-                        offset: const Offset(0, 20),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                    child: Image.network(
-                      movie.imgUrl,
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                ),
-              ),
+              MovieImageWidget(movie: movie),
               const SizedBox(
                 height: 36,
               ),
-              Column(
-                children: [
-                  Text(
-                    movie.title,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Container(
-                    height: 3,
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        movie.rate.toString(),
-                        style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      const Text('Score'),
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Container(
-                    height: 40,
-                    width: 2,
-                    decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        movie.releaseDate.formatDate,
-                        style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      const Text('Premiere'),
-                    ],
-                  ),
-                ],
-              ),
+              MovieDetailsWidget(movie: movie),
               const SizedBox(
                 height: 16,
               ),
@@ -129,60 +48,6 @@ class MovieDetailsPage extends GetView<MovieDetailsController> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ReviewSectionWidget extends StatelessWidget {
-  const ReviewSectionWidget({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final MovieDetailsController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            const SizedBox(
-              width: 16,
-            ),
-            Container(
-              height: 40,
-              width: 3,
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-            Text(
-              'Reviews',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-          ],
-        ),
-        Obx(() {
-          switch (controller.store.state) {
-            case StoreState.loading:
-              return const ReviewLoadingWidget();
-            case StoreState.await:
-              return ReviewListWidget(
-                reviews: controller.store.reviews,
-                onEditReview: (review) => controller.toReviewForm(review: review),
-              );
-            case StoreState.error:
-              return const ReviewErrorWidget();
-            case StoreState.noContent:
-              return const ReviewNotFoundWidget();
-          }
-        }),
-      ],
     );
   }
 }

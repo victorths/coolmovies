@@ -44,4 +44,43 @@ class MovieRepository {
       rethrow;
     }
   }
+
+  Future<List<ReviewEntity>> fetchReviewsByMovieId(String movieId) async {
+    try {
+      final result = await client.query(
+        QueryOptions(
+          document: gql(r"""
+            {
+              allMovieReviews(
+                filter: {movieId: {equalTo: "MOVIE_ID"}}
+              ) {
+                nodes {
+                  id
+                  title
+                  body
+                  rating
+                  userByUserReviewerId {
+                    name
+                    id
+                  }
+                }
+              }
+            }
+        """
+              .replaceFirst('MOVIE_ID', movieId)),
+        ),
+      );
+      final data = result.data?['allMovieReviews'];
+      if (result.hasException && data != null) {
+        throw Exception(
+          result.exception ?? "Query result Error",
+        );
+      } else {
+        final castedData = data['nodes'].cast<Map<String, dynamic>>();
+        return List<ReviewEntity>.from(castedData.map((js) => ReviewEntity.fromJson(js)));
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

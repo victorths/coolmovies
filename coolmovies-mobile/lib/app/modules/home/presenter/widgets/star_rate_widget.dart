@@ -18,9 +18,9 @@ class StarRateWidget extends StatelessWidget {
             rate.toString(),
             style: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.white),
           ),
-          const Icon(
+          Icon(
             Icons.star,
-            color: Colors.yellow,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ],
       ),

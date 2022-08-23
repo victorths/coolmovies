@@ -13,7 +13,7 @@ class CustomTheme {
             ),
           ),
         ),
-        iconTheme: const IconThemeData(size: 30),
+        iconTheme: const IconThemeData(size: 20),
         inputDecorationTheme: InputDecorationTheme(
           contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
           border: OutlineInputBorder(
@@ -30,6 +30,7 @@ final colorScheme = ColorScheme.fromSeed(
   seedColor: const Color(0xFF6FC2D0),
   secondary: const Color(0xFFFF8246),
   tertiary: const Color(0xFF373A6D),
+  shadow: const Color(0xFF373A6D).withOpacity(0.15),
   onPrimary: Colors.white,
   onBackground: const Color.fromARGB(255, 192, 196, 197),
 );
@@ -47,7 +48,7 @@ TextTheme primaryTextTheme = TextTheme(
   ),
   headline3: TextStyle(
     color: colorScheme.tertiary,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     fontSize: 16,
   ),
   headline4: TextStyle(

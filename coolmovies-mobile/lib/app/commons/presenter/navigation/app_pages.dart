@@ -28,5 +28,17 @@ class AppPages {
         ),
       ),
     ),
+    GetPage(
+      name: _Paths.movieDetails,
+      page: () => const MovieDetailsPage(),
+      binding: BindingsBuilder.put(
+        () => MovieDetailsController(
+          store: MovieDetailsStore(),
+          repository: MovieRepository(
+            client: Get.find(),
+          ),
+        ),
+      ),
+    ),
   ];
 }
